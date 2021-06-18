@@ -6,6 +6,7 @@ const { connection } = require("./db/connection")
 const user = require("./routes/user")
 const step = require("./routes/step")
 const question = require("./routes/question")
+const service = require("./routes/service")
 
 const app = express()
 
@@ -16,5 +17,6 @@ app.use(bodyParser.json())
 app.use("/user", user)
 app.use("/step", step)
 app.use("/question", question)
+app.use("/service", service)
 
 module.exports = { app }
