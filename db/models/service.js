@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
 const serviceSchema = new schema({
-    name: {
+    serviceTitle: {
         type: String,
         require: true
     },

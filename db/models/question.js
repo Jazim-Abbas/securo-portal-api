@@ -2,11 +2,11 @@ const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
 const questionSchema = new schema({
-    title: {
+    questionTitle: {
         type: String,
         require: true
     },
-    description: {
+    questionDescription: {
         type: String,
         require: true
     },

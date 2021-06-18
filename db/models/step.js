@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
 const stepSchema = new schema({
-    name: {
+    stepTitle: {
         type: String,
         require: true
     }
