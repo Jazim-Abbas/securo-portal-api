@@ -3,6 +3,7 @@ const router = express.Router()
 const step = require("../controllers/step")
 
 router.post("/add", step.addStep)
-router.get("/get", step.getAllSteps)
+router.get("/get-all-steps", step.getAllSteps)
+router.post("/get-single-step", step.getSingleSteps)
 
 module.exports = router

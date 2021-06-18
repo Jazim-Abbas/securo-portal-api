@@ -16,3 +16,10 @@ exports.getAllSteps = promise( async (req, res) => {
 
     res.status(200).json({ step })
 })
+
+exports.getSingleSteps = promise(async (req, res) => {
+    const step = await Step.findOne({_id: req.body.stepId})
+    if (!step) throw new Exceptions.NotFound
+
+    res.status(200).json({ step })
+})
