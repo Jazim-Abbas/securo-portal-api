@@ -3,5 +3,9 @@ const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 
 exports.addStep = promise( async (req, res) => {
-    
+    const newStep = new Step({
+        ...req.body
+    })
+    await newStep.save()
+    throw new Exceptions.Success
 })
