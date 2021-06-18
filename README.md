@@ -27,7 +27,7 @@
 
 ### to view the profile of an authenticated user
 
-- user/profile :post
+- user/profile :get
 
 ## Routes for steps
 
