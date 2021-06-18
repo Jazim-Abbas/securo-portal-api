@@ -2,7 +2,8 @@ const express = require("express")
 const router = express.Router()
 const service = require("../controllers/service")
 const { validation } = require("../middlewares/validation")
+const { addServiceSchema } = require("../validation/service")
 
-router.post("/add", service.addService)
+router.post("/add", validation(addServiceSchema), service.addService)
 
 module.exports = router
