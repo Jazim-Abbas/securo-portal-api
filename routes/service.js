@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const service = require("../controllers/service")
+const { authentication } = require("../middlewares/isAuth")
 const { validation } = require("../middlewares/validation")
 const { addServiceSchema, getServiceSchema } = require("../validation/service")
 
