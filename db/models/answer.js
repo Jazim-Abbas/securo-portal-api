@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
-const questionSchema = new schema({
+const answerSchema = new schema({
     answer: {
         type: String,
         require: true
@@ -16,4 +16,4 @@ const questionSchema = new schema({
     },
 })
 
-exports.Question = mongoose.model("Question", questionSchema)
+exports.Answer = mongoose.model("Answer", answerSchema)
