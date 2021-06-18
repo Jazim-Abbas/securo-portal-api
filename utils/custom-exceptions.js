@@ -14,11 +14,6 @@ class EmailExist extends HttpError {
     }
 }
 
-class Success extends HttpError {
-    constructor(message) {
-        super(message, 200, "Successfully Added");
-    }
-}
 class EmailNotExists extends HttpError {
     constructor(message) {
         super(message, 400, "EMAIL NOT FOUND");
@@ -88,5 +83,4 @@ module.exports = {
     BadRequset,
     EmailExpire,
     InvalidParamID,
-    Success
 };

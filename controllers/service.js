@@ -8,7 +8,7 @@ exports.addService = promise( async (req, res) => {
     })
 
     await newSevice.save()
-    throw new Exceptions.Success
+    res.status(200).json({ message: "Successfully added services" })
 })
 
 exports.getSevices = promise( async (req, res) => {

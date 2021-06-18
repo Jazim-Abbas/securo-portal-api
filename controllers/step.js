@@ -7,7 +7,7 @@ exports.addStep = promise( async (req, res) => {
         ...req.body
     })
     await newStep.save()
-    throw new Exceptions.Success
+    res.status(200).json({ message: "Successfully added steps" })
 })
 
 exports.getAllSteps = promise( async (req, res) => {

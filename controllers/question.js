@@ -8,7 +8,7 @@ exports.addQuestion = promise(async (req, res) => {
     })
 
     await newQuestion.save()
-    throw new Exceptions.Success
+    res.status(200).json({ message: "Successfully added questions" })
 })
 
 exports.getQuestion = promise(async (req, res) => {
