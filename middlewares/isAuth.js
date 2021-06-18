@@ -18,7 +18,7 @@ exports.authentication = async (req, res, next) => {
         })
     }
     catch (err) {
-        throw new Exceptions.BadRequset
+        res.status(401).json({ message: "Auth Failed! Invalid Token"})
     }
 
 }
