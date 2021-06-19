@@ -1,6 +1,11 @@
 const yup = require("yup")
 
-exports.addquestionSchemaForStep = yup.object({
+exports.addquestionSchemaForStep1 = yup.object({
+    questionTitle: yup.string().required(),
+    stepId: yup.string().required()
+})
+
+exports.addquestionSchemaForStep2 = yup.object({
     questionTitle: yup.string().required(),
     questionDescription: yup.string().required(),
     stepId: yup.string().required()
