@@ -112,3 +112,21 @@
     stepId:
 }
 ```
+## Routes for answers
+### to add answer for step 2
+- answer/add-for-step2 :post
+```
+{
+    stepId:
+    answer1:
+    questionId1:
+    answer2:
+    questionId2:
+    answer3:
+    questionId3:
+    answer4:
+    questionId4:
+    answer5:
+    questionId5:
+}
+```
