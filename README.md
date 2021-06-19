@@ -59,7 +59,7 @@
 
 ### to add a new question for step 1
 
-- question/add-for-step :post
+- question/add-for-step1 :post
 
 ```
 {
@@ -70,7 +70,7 @@
 
 ### to add a new question for step 2
 
-- question/add-for-step :post
+- question/add-for-step2 :post
 
 ```
 {
