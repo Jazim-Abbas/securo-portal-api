@@ -103,7 +103,7 @@
 }
 ```
 
-### to get a service for specific step
+### to get a service for a specific step
 
 - service/get :post
 
@@ -112,9 +112,13 @@
     stepId:
 }
 ```
+
 ## Routes for answers
+
 ### to add answer for step 2
+
 - answer/add-for-step2 :post
+
 ```
 {
     stepId:
@@ -128,5 +132,28 @@
     questionId4:
     answer5:
     questionId5:
+}
+```
+
+## Routes for sections
+
+### to add a new section
+
+- section/add :post
+
+```
+{
+    sectionTitle:
+    serviceId:
+}
+```
+
+### to get a section for a specific service
+
+- section/get :post
+
+```
+{
+    serviceId:
 }
 ```
