@@ -8,6 +8,7 @@ const step = require("./routes/step")
 const question = require("./routes/question")
 const service = require("./routes/service")
 const answer = require("./routes/answer")
+const section = require("./routes/section")
 
 const app = express()
 
@@ -20,5 +21,6 @@ app.use("/step", step)
 app.use("/question", question)
 app.use("/service", service)
 app.use("/answer", answer)
+app.use("/section", section)
 
 module.exports = { app }
