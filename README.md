@@ -199,3 +199,25 @@
     stepId: (only for step)
 }
 ```
+### Routes to upload multiple image for section
+
+- answer/upload-multiple :post
+
+```
+{
+    image: {
+        type: form-data
+
+    },
+    image: {
+        type: form-data
+
+    },
+    image: {
+        type: form-data
+
+    },
+    questionId:
+    sectionId: (only for section)
+}
+```
