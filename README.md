@@ -120,19 +120,43 @@
 - answer/add-for-step2 :post
 
 ```
-{
-    stepId:
-    answer1:
-    questionId1:
-    answer2:
-    questionId2:
-    answer3:
-    questionId3:
-    answer4:
-    questionId4:
-    answer5:
-    questionId5:
-}
+[
+    {
+        userId:
+        stepId:
+        answer:
+        questionId:
+    },
+    {
+        userId:
+        stepId:
+        answer:
+        questionId:
+    } 
+    and so on depends on length of question which i've logged on console
+]
+```
+
+### to add answer for section
+
+- answer/add-for-section :post
+
+```
+[
+    {
+        userId:
+        sectionId:
+        answer:
+        questionId:
+    },
+    {
+        userId:
+        sectionId:
+        answer:
+        questionId:
+    } 
+    and so on depends on length of question which i've logged on console
+]
 ```
 
 ## Routes for sections
