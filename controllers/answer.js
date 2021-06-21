@@ -3,11 +3,7 @@ const { Question } = require("../db/models/question")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
 
-exports.addAnswerForStep1 = promise(async (req, res) => {
-    res.json("Add answers for step 1")
-})
-
-exports.addAnswerForStep2 = promise(async (req, res) => {
+exports.addAnswerForStep = promise(async (req, res) => {
 
     const body = req.body
 
@@ -41,4 +37,8 @@ exports.addAnswerForSection = promise(async (req, res) => {
     Answer.insertMany(body)
 
     res.status(200).json("Successfully Inserted Answers")
+})
+
+exports.uploadImageForSection = promise(async (req, res) => {
+    
 })
