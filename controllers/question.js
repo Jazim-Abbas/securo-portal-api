@@ -24,3 +24,20 @@ exports.getSectionQuestion = promise(async (req, res) => {
 
     res.status(200).json({ question })
 })
+
+exports.updateQuestion = promise( async (req, res) => {
+
+    const body = req.body
+    const question = await Question.findById(body.questionId)
+    if (!question) throw new Exceptions.NotFound
+
+    await Question.updateOne(
+        {_id: body.questionId},
+        {
+            $set: {
+                ...body
+            }
+        }
+    )
+    res.status(200).json({ message: "Successfully updated question" })
+})

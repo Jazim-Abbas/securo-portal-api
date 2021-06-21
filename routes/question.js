@@ -10,5 +10,7 @@ router.post("/add-for-step2", validation(addquestionSchemaForStep2), question.ad
 router.post("/add-for-section", validation(addquestionSchemaForSection2), question.addQuestion)
 router.post("/get-for-specificstep", validation(getquestionSchemaForStep), question.getQuestion)
 router.post("/get-for-section", validation(getquestionSchemaForSection), question.getSectionQuestion)
+router.post("/update", question.updateQuestion)
+
 
 module.exports = router
