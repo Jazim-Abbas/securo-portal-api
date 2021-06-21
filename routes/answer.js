@@ -5,8 +5,29 @@ const { authentication } = require("../middlewares/isAuth")
 const { validation } = require("../middlewares/validation")
 const { addAnswerSchemaForStep, addAnswerSchemaForSection } = require("../validation/answer")
 
-router.post("/add-for-step1", authentication, answer.addAnswerForStep1)
-router.post("/add-for-step2", authentication, answer.addAnswerForStep2)
+const multer = require("multer")
+const path = require("path")
+
+const storage = multer.diskStorage({
+    destination: "./upload/images",
+    filename: (req, file, fileName) => {
+        return fileName(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    }
+})
+
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+            return callback(new Error('Only images are allowed'))
+        }
+        callback(null, true)
+    }
+}).single("file")
+
+router.post("/add-for-step", authentication, answer.addAnswerForStep)
 router.post("/add-for-section", authentication, answer.addAnswerForSection)
+router.post("/upload-for-section", authentication, upload, answer.uploadImageForSection)
 
 module.exports = router
