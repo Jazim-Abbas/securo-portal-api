@@ -218,6 +218,6 @@
 
     },
     questionId:
-    sectionId: (only for section)
+    sectionId:
 }
 ```
