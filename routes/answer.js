@@ -28,6 +28,6 @@ const upload = multer({
 
 router.post("/add-for-step", authentication, answer.addAnswerForStep)
 router.post("/add-for-section", authentication, answer.addAnswerForSection)
-router.post("/upload-for-section", authentication, upload, answer.uploadImageForSection)
+router.post("/upload-image", authentication, upload, answer.uploadImageForAndStepSection)
 
 module.exports = router
