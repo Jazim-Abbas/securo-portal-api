@@ -24,7 +24,7 @@ const upload = multer({
         }
         callback(null, true)
     }
-}).single("file")
+}).single("image")
 
 router.post("/add-for-step", authentication, answer.addAnswerForStep)
 router.post("/add-for-section", authentication, answer.addAnswerForSection)
