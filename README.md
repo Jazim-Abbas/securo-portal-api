@@ -132,8 +132,8 @@
         stepId:
         answer:
         questionId:
-    } 
-    and so on depends on length of question which i've logged on console
+    }
+    and so on depends on length of question
 ]
 ```
 
@@ -154,8 +154,8 @@
         sectionId:
         answer:
         questionId:
-    } 
-    and so on depends on length of question which i've logged on console
+    }
+    and so on depends on length of question
 ]
 ```
 
@@ -179,5 +179,23 @@
 ```
 {
     serviceId:
+}
+```
+
+## Routes to upload image
+
+### Routes to upload image for section and step
+
+- answer/upload-image :post
+
+```
+{
+    image: {
+        type: form-data
+
+    },
+    questionId:
+    sectionId: (only for section)
+    stepId: (only for step)
 }
 ```
