@@ -4,7 +4,18 @@ const schema = mongoose.Schema
 const answerSchema = new schema({
     answer: {
         type: String,
-        require: true
+    },
+    isAnswer: {
+        type: Boolean,
+    },
+    imageURL1: {
+        type: String
+    },
+    imageURL2: {
+        type: String
+    },
+    imageURL3: {
+        type: String
     },
     userId: {
         type: schema.Types.ObjectId,
