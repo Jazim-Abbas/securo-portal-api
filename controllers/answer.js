@@ -69,3 +69,37 @@ exports.uploadImageForAndStepSection = promise(async (req, res) => {
         res.status(200).json({ message: "Successfully added image" })
     }
 })
+
+exports.uploadImagesForSection = promise(async (req, res) => {
+    const body = req.body
+
+    const answer = await Answer.findOne({ userId: req.user._id, questionId: body.questionId })
+
+    if (answer) {
+        await Answer.updateOne(
+            { userId: req.user._id, questionId: body.questionId },
+            {
+                $set:
+                {
+                    ...req.body,
+                    imageURL1: req.files[0].filename,
+                    imageURL2: req.files[1].filename,
+                    imageURL3: req.files[0].filename,
+                    userId: req.user._id,
+                }
+            })
+        res.status(200).json({ message: "Successfully updated image" })
+
+    }
+    else {
+        const newAnswer = new Answer({
+            ...req.body,
+            imageURL1: req.files[0].filename,
+            imageURL2: req.files[1].filename,
+            imageURL3: req.files[0].filename,
+            userId: req.user._id,
+        })
+        await newAnswer.save()
+        res.status(200).json({ message: "Successfully added image" })
+    }
+})
