@@ -103,3 +103,11 @@ exports.uploadImagesForSection = promise(async (req, res) => {
         res.status(200).json({ message: "Successfully added image" })
     }
 })
+
+exports.getAnswer = promise(async (req, res) => {
+    const answer = await Answer.find({ userId: req.body.userId })
+    .populate("userId").populate("questionId").populate("stepId").populate("sectionId")
+    if (!answer) throw new Exceptions.NotFound
+
+    res.status(200).json({ answer })
+})
