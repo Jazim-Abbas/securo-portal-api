@@ -80,6 +80,17 @@
 }
 ```
 
+### to update/edit a question
+
+- question/update :post
+
+```
+{
+    questionId:
+    questionTitle: (if required)
+    questionDescription: ((if required))
+}
+
 ### to get question from specific step
 
 - question/get-for-specificstep :post
