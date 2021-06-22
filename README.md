@@ -90,6 +90,7 @@
     questionTitle: (if required)
     questionDescription: ((if required))
 }
+```
 
 ### to get question from specific step
 
@@ -170,6 +171,16 @@
 ]
 ```
 
+### to find all answers for a specificuser
+
+- answer/get :post
+
+```
+{
+    userId:
+}
+```
+
 ## Routes for sections
 
 ### to add a new section
@@ -210,6 +221,7 @@
     stepId: (only for step)
 }
 ```
+
 ### Routes to upload multiple image for section
 
 - answer/upload-multiple :post
