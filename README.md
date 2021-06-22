@@ -115,9 +115,9 @@
 
 ## Routes for answers
 
-### to add answer for step 2
+### to add answer for step
 
-- answer/add-for-step2 :post
+- answer/add-for-step :post
 
 ```
 [
