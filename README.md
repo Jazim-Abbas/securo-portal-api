@@ -80,6 +80,18 @@
 }
 ```
 
+### to add a new question for section
+
+- question/add-for-section :post
+
+```
+{
+    questionTitle:
+    questionDescription:
+    sectionId:
+}
+```
+
 ### to update/edit a question
 
 - question/update :post
@@ -203,6 +215,10 @@
     serviceId:
 }
 ```
+
+### to get all sections
+
+- section/get-all :get
 
 ## Routes to upload image
 
