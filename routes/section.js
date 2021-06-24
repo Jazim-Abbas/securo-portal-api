@@ -6,7 +6,7 @@ const { validation } = require("../middlewares/validation")
 const { addSectionSchema, getSectionSchema } = require("../validation/section")
 
 router.post("/add", validation(addSectionSchema), section.addSection)
-router.post("/get", validation(getSectionSchema), section.getSection)
+router.post("/get", section.getSection)
 
 
 module.exports = router
