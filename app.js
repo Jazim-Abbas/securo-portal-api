@@ -16,6 +16,10 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+app.get("/", async (req, res) => {
+    res.status(200).json({ message: "Securo Portal Rest Api" })
+})
+
 app.use("/user", user)
 app.use("/step", step)
 app.use("/question", question)
