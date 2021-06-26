@@ -11,9 +11,11 @@ exports.addSection = promise(async (req, res) => {
     res.status(200).json({ message: "Successfully added section" })
 })
 
+
+
 exports.getSection = promise(async (req, res) => {
-    const body = req.body
-    const section = await Section.find({ serviceId: { $in: body } })
+    const { sections} = req.body
+    const section = await Section.find({ serviceId: { $in: sections } })
     if (!section) throw new Exceptions.NotFound
 
     res.status(200).json({ section })
