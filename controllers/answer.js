@@ -7,14 +7,14 @@ exports.addAnswerForStep = promise(async (req, res) => {
 
     const { answers } = req.body
 
-    const question = await Question.find({ stepId: body[0].stepId })
-    if (!question) throw new Exceptions.NotFound
+    // const question = await Question.find({ stepId: body[0].stepId })
+    // if (!question) throw new Exceptions.NotFound
 
-    console.log(question.length)
+    // console.log(question.length)
 
-    const answer = await Answer.findOne({ stepId: body[0].stepId, userId: req.user._id })
+    // const answer = await Answer.findOne({ stepId: body[0].stepId, userId: req.user._id })
 
-    if (answer) throw new Exceptions.BadRequset("You have already submitted answers for this step")
+    // if (answer) throw new Exceptions.BadRequset("You have already submitted answers for this step")
 
     Answer.insertMany(answers)
 
@@ -25,14 +25,14 @@ exports.addAnswerForSection = promise(async (req, res) => {
 
     const { answers } = req.body
 
-    const question = await Question.find({ sectionId: body[0].sectionId })
-    if (!question) throw new Exceptions.NotFound
+    // const question = await Question.find({ sectionId: body[0].sectionId })
+    // if (!question) throw new Exceptions.NotFound
 
-    console.log(question.length)
+    // console.log(question.length)
 
-    const answer = await Answer.findOne({ userId: req.user._id, sectionId: body[0].sectionId })
+    // const answer = await Answer.findOne({ userId: req.user._id, sectionId: body[0].sectionId })
 
-    if (answer) throw new Exceptions.BadRequset("You have already submitted answers for this section")
+    // if (answer) throw new Exceptions.BadRequset("You have already submitted answers for this section")
 
     Answer.insertMany(answers)
 
