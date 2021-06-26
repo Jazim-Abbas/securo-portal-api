@@ -113,6 +113,15 @@
     stepId:
 }
 ```
+### to get question from specific section
+
+- question/get-for-section :post
+
+```
+{
+    sectionId:
+}
+```
 
 ## Routes for services
 
