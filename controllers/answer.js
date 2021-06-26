@@ -23,7 +23,7 @@ exports.addAnswerForStep = promise(async (req, res) => {
 
 exports.addAnswerForSection = promise(async (req, res) => {
 
-    const body = req.body
+    const { answers } = req.body
 
     const question = await Question.find({ sectionId: body[0].sectionId })
     if (!question) throw new Exceptions.NotFound
@@ -34,7 +34,7 @@ exports.addAnswerForSection = promise(async (req, res) => {
 
     if (answer) throw new Exceptions.BadRequset("You have already submitted answers for this section")
 
-    Answer.insertMany(body)
+    Answer.insertMany(answers)
 
     res.status(200).json("Successfully Inserted Answers")
 })
@@ -106,7 +106,7 @@ exports.uploadImagesForSection = promise(async (req, res) => {
 
 exports.getAnswer = promise(async (req, res) => {
     const answer = await Answer.find({ userId: req.body.userId })
-    .populate("userId").populate("questionId").populate("stepId").populate("sectionId")
+        .populate("userId").populate("questionId").populate("stepId").populate("sectionId")
     if (!answer) throw new Exceptions.NotFound
 
     res.status(200).json({ answer })
