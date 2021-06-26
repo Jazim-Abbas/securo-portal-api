@@ -5,7 +5,7 @@ const { promise } = require("../middlewares/promises")
 
 exports.addAnswerForStep = promise(async (req, res) => {
 
-    const body = req.body
+    const { answers } = req.body
 
     const question = await Question.find({ stepId: body[0].stepId })
     if (!question) throw new Exceptions.NotFound
@@ -16,7 +16,7 @@ exports.addAnswerForStep = promise(async (req, res) => {
 
     if (answer) throw new Exceptions.BadRequset("You have already submitted answers for this step")
 
-    Answer.insertMany(body)
+    Answer.insertMany(answers)
 
     res.status(200).json("Successfully Inserted Answers")
 })
