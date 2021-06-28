@@ -15,7 +15,7 @@ exports.profile = promise(async (req, res) => {
 })
 
 exports.allUsers = promise(async (req, res) => {
-    const users = await User.find()
+    const users = await User.find({isAdmin: false})
     if (!users) throw new Exceptions.NotFound("No user found")
     res.status(200).json({ users })
 
