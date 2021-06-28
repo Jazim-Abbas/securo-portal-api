@@ -29,6 +29,10 @@
 
 - user/profile :get
 
+### to view the profile of all users
+
+- user/all :get
+
 ## Routes for steps
 
 ### to add a new step
@@ -113,6 +117,7 @@
     stepId:
 }
 ```
+
 ### to get question from specific section
 
 - question/get-for-section :post
