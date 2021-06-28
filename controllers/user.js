@@ -13,6 +13,13 @@ exports.profile = promise(async (req, res) => {
     })
 })
 
+exports.allUsers = promise(async (req, res) => {
+    const users = await User.find()
+    if (!users) throw new Exceptions.NotFound("No user found")
+    res.status(200).json({ users })
+
+})
+
 exports.register = promise(async (req, res) => {
     const emailExists = await User.findOne({ email: req.body.email })
     if (emailExists) throw new Exceptions.EmailExist
