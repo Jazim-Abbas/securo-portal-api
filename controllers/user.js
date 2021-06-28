@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const Exceptions = require("../utils/custom-exceptions")
 const { promise } = require("../middlewares/promises")
+const { sendMail, code } = require("../middlewares/sendMail")
 
 exports.profile = promise(async (req, res) => {
     const user = await User.findOne({ email: req.user.email })
@@ -27,14 +28,17 @@ exports.register = promise(async (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, 10)
     const newUser = new User({
         ...req.body,
-        password: hash
+        password: hash,
+        verificationCode: code
     })
 
     const saveUser = await newUser.save()
-    res.status(200).json({
-        message: "Successfully register a new user",
-        user: newUser
-    })
+    await sendMail(req.body.email, res)
+
+    // res.status(200).json({
+    //     message: "Successfully register a new user",
+    //     user: newUser
+    // })
 })
 
 exports.login = promise(async (req, res) => {
@@ -43,19 +47,48 @@ exports.login = promise(async (req, res) => {
 
     const matchedPassword = await bcrypt.compareSync(req.body.password, user.password)
     if (!matchedPassword) throw new Exceptions.CredentialsNotMatched
+    if (user.isVerified == false) {
+        if (req.body.verificationCode == user.verificationCode) {
+            await User.updateOne(
+                { email: user.email },
+                { $set: { isVerified: true } }
+            )
 
-    const token = await jwt.sign({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin
-    }, process.env.ACCESS_TOKEN_SECRET)
+            const token = await jwt.sign({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin
+            }, process.env.ACCESS_TOKEN_SECRET)
 
-    res.status(200).json({
-        token: token,
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin
-    })
+            res.status(200).json({
+                token: token,
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin
+            })
+
+        }
+        else {
+            res.status(400).json({ message: "Incorrect Verification Code" })
+        }
+    }
+    else {
+        const token = await jwt.sign({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        }, process.env.ACCESS_TOKEN_SECRET)
+
+        res.status(200).json({
+            token: token,
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        })
+    }
+
 })
