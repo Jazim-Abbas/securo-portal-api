@@ -15,7 +15,7 @@ exports.profile = promise(async (req, res) => {
 })
 
 exports.allUsers = promise(async (req, res) => {
-    const users = await User.find({isAdmin: false})
+    const users = await User.find({ isAdmin: false })
     if (!users) throw new Exceptions.NotFound("No user found")
     res.status(200).json({ users })
 
@@ -41,40 +41,29 @@ exports.register = promise(async (req, res) => {
     // })
 })
 
+exports.verifyUser = promise(async (req, res) => {
+    const user = await User.findOne({ email: req.body.email })
+    if (!user) throw new Exceptions.CredentialsNotMatched
+
+    if (req.body.verificationCode == user.verificationCode) {
+        await User.updateOne(
+            { email: user.email },
+            { $set: { isVerified: true } }
+        )
+    }
+    else {
+        res.status(400).json({ message: "Incorrect Verification Code" })
+    }
+})
+
 exports.login = promise(async (req, res) => {
     const user = await User.findOne({ email: req.body.email })
     if (!user) throw new Exceptions.CredentialsNotMatched
 
     const matchedPassword = await bcrypt.compareSync(req.body.password, user.password)
     if (!matchedPassword) throw new Exceptions.CredentialsNotMatched
-    if (user.isVerified == false) {
-        if (req.body.verificationCode == user.verificationCode) {
-            await User.updateOne(
-                { email: user.email },
-                { $set: { isVerified: true } }
-            )
+    if (user.isVerified == true) {
 
-            const token = await jwt.sign({
-                _id: user._id,
-                name: user.name,
-                email: user.email,
-                isAdmin: user.isAdmin
-            }, process.env.ACCESS_TOKEN_SECRET)
-
-            res.status(200).json({
-                token: token,
-                _id: user._id,
-                name: user.name,
-                email: user.email,
-                isAdmin: user.isAdmin
-            })
-
-        }
-        else {
-            res.status(400).json({ message: "Incorrect Verification Code" })
-        }
-    }
-    else {
         const token = await jwt.sign({
             _id: user._id,
             name: user.name,
@@ -90,5 +79,8 @@ exports.login = promise(async (req, res) => {
             isAdmin: user.isAdmin
         })
     }
+    else {
+        res.status(400).json({ message: "Please Verify your account" })
 
+    }
 })
