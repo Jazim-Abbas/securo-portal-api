@@ -10,3 +10,7 @@ exports.loginSchema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().required().min(5).max(10)
 })
+
+exports.verifySchema = yup.object({
+    verificationCode: yup.number().required(),
+})
