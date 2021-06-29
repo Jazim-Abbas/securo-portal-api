@@ -14,6 +14,16 @@
 }
 ```
 
+### to verify a new user
+
+- user/verify : post
+
+```
+{
+    verificationCode:
+}
+```
+
 ### to login an existing user
 
 - user/login :post
