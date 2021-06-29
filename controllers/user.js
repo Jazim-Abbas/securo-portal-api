@@ -50,6 +50,7 @@ exports.verifyUser = promise(async (req, res) => {
             { email: user.email },
             { $set: { isVerified: true } }
         )
+        res.status(200).json({ message: "Email Verified" })
     }
     else {
         res.status(400).json({ message: "Incorrect Verification Code" })
