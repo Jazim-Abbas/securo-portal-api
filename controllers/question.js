@@ -18,6 +18,13 @@ exports.getQuestion = promise(async (req, res) => {
     res.status(200).json({ question })
 })
 
+exports.getUploadQuestion = promise(async (req, res) => {
+    const question = await Question.findOne({ _id: "60dae9360182e921843b7b27" })
+    if (!question) throw new Exceptions.NotFound
+
+    res.status(200).json({ question })
+})
+
 exports.getSectionQuestion = promise(async (req, res) => {
     const question = await Question.find({ sectionId: req.body.sectionId })
     if (!question) throw new Exceptions.NotFound
